@@ -1,7 +1,7 @@
 <h1 align="center">Grupa4-AAEInvest</h1>
 <h1 align="center">RezervisiMe.ba</h1>
 
-![Logo](https://i.postimg.cc/pTZGt87w/278023914-1604911486538287-8105496501784716605-n.jpg)
+![Logo](https://i.postimg.cc/HLrS0Pr1/logo.jpg)
 
 **Tema** - Aplikacija za rezervaciju smještaja
 
