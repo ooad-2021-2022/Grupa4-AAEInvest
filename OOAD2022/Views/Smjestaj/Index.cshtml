@@ -43,9 +43,14 @@
                 @Html.DisplayFor(modelItem => item.VrstaSmjestaja)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.SmjestajId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SmjestajId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SmjestajId">Delete</a>
+               @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.SmjestajId">Edit</a>
+                        <nobr>|</nobr>
+                        <a asp-action="Delete" asp-route-id="@item.SmjestajId">Delete</a>
+                        <nobr>|</nobr>
+                        <a asp-action="Details" asp-route-id="@item.SmjestajId">Details</a>
+                    }
             </td>
         </tr>
 }

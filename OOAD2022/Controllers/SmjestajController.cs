@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using OOAD2022.Models;
 
 namespace OOAD2022.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class SmjestajController : Controller
     {
         private readonly ApplicationDbContext _context;

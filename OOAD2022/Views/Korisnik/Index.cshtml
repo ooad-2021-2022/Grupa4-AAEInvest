@@ -49,10 +49,15 @@
                 @Html.DisplayFor(modelItem => item.Godiste)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.KorisnikId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.KorisnikId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.KorisnikId">Delete</a>
-            </td>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.KorisnikId">Edit</a>
+                        <nobr>|</nobr>
+                        <a asp-action="Delete" asp-route-id="@item.KorisnikId">Delete</a>
+                        <nobr>|</nobr>
+                        <a asp-action="Details" asp-route-id="@item.KorisnikId">Details</a>
+                    }
+                </td>
         </tr>
 }
     </tbody>

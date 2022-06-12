@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,9 @@ using OOAD2022.Models;
 
 namespace OOAD2022.Controllers
 {
+   //korisnik ce moci sam svom profilu da pristupi, a administrator svima ???
+  [Authorize(Roles ="Administrator")]
+ //[Authorize(Roles ="Korisnik")]
     public class KorisnikController : Controller
     {
         private readonly ApplicationDbContext _context;
