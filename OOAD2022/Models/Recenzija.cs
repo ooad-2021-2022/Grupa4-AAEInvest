@@ -17,6 +17,6 @@ namespace OOAD2022.Models
         [ForeignKey("Rezervacija")]
         public int RezervacijaId { get; set; }
 
-        Recenzija() { }
+        public Recenzija() { }
     }
 }

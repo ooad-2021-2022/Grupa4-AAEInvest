@@ -16,6 +16,6 @@ namespace OOAD2022.Models
         [ForeignKey("Smjestaj")]
         public int SmjestajId { get; set; }
 
-        Soba() { }
+        public Soba() { }
     }
 }

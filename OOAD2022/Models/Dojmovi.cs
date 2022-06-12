@@ -11,6 +11,6 @@ namespace OOAD2022.Models
         [ForeignKey("Recenzija")]
         public int RecenzijaId { get; set; }
 
-        Dojmovi() { }
+       public Dojmovi() { }
     }
 }

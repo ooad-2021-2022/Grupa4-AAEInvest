@@ -24,6 +24,6 @@ namespace OOAD2022.Models
         public int SmjestajId { get; set; }
 
 
-        Rezervacija() { }
+       public Rezervacija() { }
     }
 }

@@ -10,6 +10,6 @@ namespace OOAD2022.Models
         public int Popust { get; set; }
         public int NacinPlacanjaId { get; set; }
 
-        Uplata() { }
+        public Uplata() { }
     }
 }
