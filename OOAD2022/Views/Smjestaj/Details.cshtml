@@ -1,0 +1,42 @@
+﻿@model OOAD2022.Models.Smjestaj
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Smjestaj</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NazivSmjestaja)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NazivSmjestaja)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AdresaSmjestaja)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AdresaSmjestaja)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Kontakt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Kontakt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VrstaSmjestaja)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VrstaSmjestaja)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SmjestajId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
