@@ -8,16 +8,267 @@
 @{
     Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+<title>RezervisiMe</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
-        <nav style="margin:0; padding:0; box-sizing:border-box; font-family: sans-serif; display:flex; width:100%; color:#333333; background:#e6e6e6; position:relative; color:#333333; justify-content:space-between; text-align:center; padding: 15px 30px">
-          <div class="icon" style="font-size: 35px; font-weight:800; color: #fff; color: #333333">Rezervisi<b style="color: white">Me</b></div>
-          <div class="search_box" style="display: flex; margin: auto 0; height: 35px; line-height: 35px">
-              <input type="search" placeholder="Search here" style="border:none; outline:none; background:#fff; height:100%; padding: 0 10px; font-size: 20px; width:450px">
-           
-          </div>
-          <ol style="display: flex; list-style:none; margin: auto 0">
-              <li style="margin: 0 2px"><a style="color: #333333; font-size: 20px; text-decoration: none; text-transform: capitalize; letter-spacing: 1px; padding: 5px 10px; border:2px solid #fff" asp-area="Identity" asp-page="/Account/Manage/Index">Moj Profil</a></li>
-              <li style="margin: 0 2px"><a href="#" style="color: #333333; font-size: 20px; text-decoration: none;  text-transform: capitalize; letter-spacing: 1px; padding: 5px 10px;  border:2px solid #fff">Prikazi Listu</a></li>
-          </ol>
-        </nav>
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/mac.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide">RezervisiMe</a>
+      <input type="search" placeholder="Search here" style="border:none; outline:none; background:#fff; height:100%; padding: 0 10px; font-size: 20px; width:450px; margin-top:15px; margin-left: 100px ">
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFIL</a>
+      <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PLAĆANJE</a>
+      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> KONTAKT</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
+
+<div style="margin-top: 2%; margin-bottom: 2% ">
+        <div id="myMap"
+            style="position:relative;width:100%;height:600px;"></div>
+        </div>
+        <script type='text/javascript'
+           src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async
+            defer></script>
+
+        <script type='text/javascript'>
+        function GetMap()
+            {
+                var map = new Microsoft.Maps.Map('#myMap', {
+                credentials: 'AuYY4zYMTTsD-Rv36-ziofdPgtlTVmvMC-H5ddvklzYG-vxQiWniK3VtK8pRIoWN',
+                center: new Microsoft.Maps.Location(43.8269, 18.3128),
+                mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+                zoom: 10
+                });
+
+                infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+                    visible: false
+                });
+                infobox.setMap(map);
+                var hotel = new Microsoft.Maps.Location(43.8269, 18.3128);
+                var pin = new Microsoft.Maps.Pushpin(hotel);
+                pin.metadata = {
+                    title: 'Hotel Hills',
+                    description: 'Hotel Hills Sarajevo'
+                    };
+                Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+                map.entities.push(pin);
+
+                var hotel1 = new Microsoft.Maps.Location(43.8291, 18.3092);
+                var pin1 = new Microsoft.Maps.Pushpin(hotel1);
+                pin1.metadata = {
+                    title: 'Hollywood',
+                    description: 'Hotel Hollywood Sarajevo'
+                    };
+                Microsoft.Maps.Events.addHandler(pin1, 'click', pushpinClicked);
+                map.entities.push(pin1);
+
+                var hotel2 = new Microsoft.Maps.Location(43.8583, 18.4275);
+                var pin2 = new Microsoft.Maps.Pushpin(hotel2);
+                pin2.metadata = {
+                    title: 'Europe',
+                    description: 'Hotel Europe Sarajevo'
+                    };
+                Microsoft.Maps.Events.addHandler(pin2, 'click', pushpinClicked);
+                map.entities.push(pin2);
+
+                var hotel3 = new Microsoft.Maps.Location(43.8564, 18.4036);
+                var pin3 = new Microsoft.Maps.Pushpin(hotel3);
+                pin3.metadata = {
+                    title: 'Holiday',
+                    description: 'Hotel Holiday Sarajevo'
+                    };
+                Microsoft.Maps.Events.addHandler(pin3, 'click', pushpinClicked);
+                map.entities.push(pin3);
+
+                }
+
+                
+
+            function pushpinClicked(e) {
+                if (e.target.metadata) {
+                    infobox.setOptions({
+                    location: e.target.getLocation(),
+                    title: e.target.metadata.title,
+                    description: e.target.metadata.description,
+                    visible: true
+                    });
+               }
+            }
+        </script>
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+    <img src="https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg" width:100%/>
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">REZERVIŠITE SMJEŠTAJ UZ POMOĆ NAS</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+    <span class="w3-large">Odaberite hotel pinovan na mapi i rezervišite!</span>
+    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">REZERVIŠI</a></p>
+  </div> 
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</header>
+
+<!-- Pricing Section -->
+<div class="w3-container w3-center w3-dark-grey" style="padding:128px 16px" id="pricing">
+  <h3>MOŽETE PLATITI</h3>
+  <p class="w3-large">Choose a pricing plan that fits your needs.</p>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-third w3-section">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-black w3-xlarge w3-padding-32">MasterCard - Visa</li>
+          <h2 class="w3-wide">STARO</h2>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-black w3-padding-large">PLATITE</button>
+        </li>
+      </ul>
+    </div>
+    <div class="w3-third">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-red w3-xlarge w3-padding-48">PayPal</li>
+          <h2 class="w3-wide">NOVO</h2>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-black w3-padding-large">PLATITE</button>
+        </li>
+      </ul>
+    </div>
+    <div class="w3-third w3-section">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-black w3-xlarge w3-padding-32">Aternativno</li>
+          <h2 class="w3-wide">NOVO</h2>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-black w3-padding-large">PLATITE</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h3 class="w3-center">KONTAKT</h3>
+  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <div style="margin-top:48px">
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Sarajevo, Bosna i Hercegovina</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +387 60...</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: ahajro2@etf.unsa.ba ili abrulic1@etf.unsa.ba</p>
+    <br>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+      <p>
+        <button class="w3-button w3-black" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </p>
+    </form>
+    <!-- Image of location/map -->
+    <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+</body>
+</html>
+
+
+        
 
