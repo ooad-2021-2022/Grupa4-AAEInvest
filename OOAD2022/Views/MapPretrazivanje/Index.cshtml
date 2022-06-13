@@ -1,12 +1,23 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @{
     ViewData["Title"] = "Index";
 }
+@{
+    Layout = null;
+}
 
-@*ne radi ovo*@
-<div style="align-items: center; display: flex; flex-direction: row">
-  <input type="search" id="query" name="q" placeholder="Unesite lokaciju...">
-  <button>Search</button>
-</div>
+        <nav style="margin:0; padding:0; box-sizing:border-box; font-family: sans-serif; display:flex; width:100%; color:#333333; background:#e6e6e6; position:relative; color:#333333; justify-content:space-between; text-align:center; padding: 15px 30px">
+          <div class="icon" style="font-size: 35px; font-weight:800; color: #fff; color: #333333">Rezervisi<b style="color: white">Me</b></div>
+          <div class="search_box" style="display: flex; margin: auto 0; height: 35px; line-height: 35px">
+              <input type="search" placeholder="Search here" style="border:none; outline:none; background:#fff; height:100%; padding: 0 10px; font-size: 20px; width:450px">
+           
+          </div>
+          <ol style="display: flex; list-style:none; margin: auto 0">
+              <li style="margin: 0 2px"><a style="color: #333333; font-size: 20px; text-decoration: none; text-transform: capitalize; letter-spacing: 1px; padding: 5px 10px; border:2px solid #fff" asp-area="Identity" asp-page="/Account/Manage/Index">Moj Profil</a></li>
+              <li style="margin: 0 2px"><a href="#" style="color: #333333; font-size: 20px; text-decoration: none;  text-transform: capitalize; letter-spacing: 1px; padding: 5px 10px;  border:2px solid #fff">Prikazi Listu</a></li>
+          </ol>
+        </nav>
 
-<h1>Mapa</h1>
