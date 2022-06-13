@@ -24,6 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.VrstaSmjestaja)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slike)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -43,14 +46,12 @@
                 @Html.DisplayFor(modelItem => item.VrstaSmjestaja)
             </td>
             <td>
-               @if (User.IsInRole("Administrator"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.SmjestajId">Edit</a>
-                        <nobr>|</nobr>
-                        <a asp-action="Delete" asp-route-id="@item.SmjestajId">Delete</a>
-                        <nobr>|</nobr>
-                        <a asp-action="Details" asp-route-id="@item.SmjestajId">Details</a>
-                    }
+                @Html.DisplayFor(modelItem => item.Slike.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SmjestajId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SmjestajId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SmjestajId">Delete</a>
             </td>
         </tr>
 }

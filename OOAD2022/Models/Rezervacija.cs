@@ -11,18 +11,21 @@ namespace OOAD2022.Models
         public int Sifra { get; set; }
         public DateTime DatumDolaska { get; set; }
         public DateTime DatumOdlaska { get; set; }
+        public int Cijena { get; set; }
+
         [ForeignKey("Uplata")]
         public int UplataId { get; set; }
-        public int Cijena { get; set; }
-        [ForeignKey("Recenzija")]
-        public int Recenzija { get; set; }
+        public Uplata Uplata { get; set; }
+
+
         [ForeignKey("Korisnik")]
 
         public int KorisnikId { get; set; }
+        public Korisnik Korisnik { get; set; }
 
         [ForeignKey("Smjestaj")]
         public int SmjestajId { get; set; }
-
+        public Smjestaj Smjestaj { get; set; }
 
        public Rezervacija() { }
     }

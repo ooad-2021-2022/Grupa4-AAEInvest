@@ -8,8 +8,6 @@ namespace OOAD2022.Models
         [Key]
         public int Id { get; set; }
         public string Opis { get; set; }
-        [ForeignKey("Recenzija")]
-        public int RecenzijaId { get; set; }
 
        public Dojmovi() { }
     }

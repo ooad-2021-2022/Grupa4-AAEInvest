@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using OOAD2022.Models;
 
 namespace OOAD2022.Controllers
 {
-    [Authorize(Roles = "Administrator")]
     public class SmjestajController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +22,8 @@ namespace OOAD2022.Controllers
         // GET: Smjestaj
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Smjestaj.ToListAsync());
+            var applicationDbContext = _context.Smjestaj.Include(s => s.Slike);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Smjestaj/Details/5
@@ -36,6 +35,7 @@ namespace OOAD2022.Controllers
             }
 
             var smjestaj = await _context.Smjestaj
+                .Include(s => s.Slike)
                 .FirstOrDefaultAsync(m => m.SmjestajId == id);
             if (smjestaj == null)
             {
@@ -48,6 +48,7 @@ namespace OOAD2022.Controllers
         // GET: Smjestaj/Create
         public IActionResult Create()
         {
+            ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id");
             return View();
         }
 
@@ -56,7 +57,7 @@ namespace OOAD2022.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SmjestajId,NazivSmjestaja,AdresaSmjestaja,Kontakt,VrstaSmjestaja")] Smjestaj smjestaj)
+        public async Task<IActionResult> Create([Bind("SmjestajId,NazivSmjestaja,AdresaSmjestaja,Kontakt,VrstaSmjestaja,SlikaId")] Smjestaj smjestaj)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +65,7 @@ namespace OOAD2022.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id", smjestaj.SlikaId);
             return View(smjestaj);
         }
 
@@ -80,6 +82,7 @@ namespace OOAD2022.Controllers
             {
                 return NotFound();
             }
+            ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id", smjestaj.SlikaId);
             return View(smjestaj);
         }
 
@@ -88,7 +91,7 @@ namespace OOAD2022.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SmjestajId,NazivSmjestaja,AdresaSmjestaja,Kontakt,VrstaSmjestaja")] Smjestaj smjestaj)
+        public async Task<IActionResult> Edit(int id, [Bind("SmjestajId,NazivSmjestaja,AdresaSmjestaja,Kontakt,VrstaSmjestaja,SlikaId")] Smjestaj smjestaj)
         {
             if (id != smjestaj.SmjestajId)
             {
@@ -115,6 +118,7 @@ namespace OOAD2022.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id", smjestaj.SlikaId);
             return View(smjestaj);
         }
 
@@ -127,6 +131,7 @@ namespace OOAD2022.Controllers
             }
 
             var smjestaj = await _context.Smjestaj
+                .Include(s => s.Slike)
                 .FirstOrDefaultAsync(m => m.SmjestajId == id);
             if (smjestaj == null)
             {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +10,6 @@ using OOAD2022.Models;
 
 namespace OOAD2022.Controllers
 {
-    //korisnik ce moci sam svom profilu da pristupi, a administrator svima ???
-    [Authorize(Roles = "Administrator")]
     public class RezervacijaController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +22,8 @@ namespace OOAD2022.Controllers
         // GET: Rezervacija
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Rezervacija.ToListAsync());
+            var applicationDbContext = _context.Rezervacija.Include(r => r.Korisnik).Include(r => r.Smjestaj).Include(r => r.Uplata);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Rezervacija/Details/5
@@ -37,6 +35,9 @@ namespace OOAD2022.Controllers
             }
 
             var rezervacija = await _context.Rezervacija
+                .Include(r => r.Korisnik)
+                .Include(r => r.Smjestaj)
+                .Include(r => r.Uplata)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (rezervacija == null)
             {
@@ -49,6 +50,9 @@ namespace OOAD2022.Controllers
         // GET: Rezervacija/Create
         public IActionResult Create()
         {
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "Adresa");
+            ViewData["SmjestajId"] = new SelectList(_context.Smjestaj, "SmjestajId", "SmjestajId");
+            ViewData["UplataId"] = new SelectList(_context.Uplata, "Id", "Id");
             return View();
         }
 
@@ -57,7 +61,7 @@ namespace OOAD2022.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Sifra,DatumDolaska,DatumOdlaska,UplataId,Cijena,Recenzija,KorisnikId,SmjestajId")] Rezervacija rezervacija)
+        public async Task<IActionResult> Create([Bind("Id,Sifra,DatumDolaska,DatumOdlaska,Cijena,UplataId,KorisnikId,SmjestajId")] Rezervacija rezervacija)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +69,13 @@ namespace OOAD2022.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "Adresa", rezervacija.KorisnikId);
+            ViewData["SmjestajId"] = new SelectList(_context.Smjestaj, "SmjestajId", "SmjestajId", rezervacija.SmjestajId);
+            ViewData["UplataId"] = new SelectList(_context.Uplata, "Id", "Id", rezervacija.UplataId);
             return View(rezervacija);
         }
 
         // GET: Rezervacija/Edit/5
-        [Authorize(Roles="Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,6 +88,9 @@ namespace OOAD2022.Controllers
             {
                 return NotFound();
             }
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "Adresa", rezervacija.KorisnikId);
+            ViewData["SmjestajId"] = new SelectList(_context.Smjestaj, "SmjestajId", "SmjestajId", rezervacija.SmjestajId);
+            ViewData["UplataId"] = new SelectList(_context.Uplata, "Id", "Id", rezervacija.UplataId);
             return View(rezervacija);
         }
 
@@ -90,7 +99,7 @@ namespace OOAD2022.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Sifra,DatumDolaska,DatumOdlaska,UplataId,Cijena,Recenzija,KorisnikId,SmjestajId")] Rezervacija rezervacija)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Sifra,DatumDolaska,DatumOdlaska,Cijena,UplataId,KorisnikId,SmjestajId")] Rezervacija rezervacija)
         {
             if (id != rezervacija.Id)
             {
@@ -117,6 +126,9 @@ namespace OOAD2022.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "Adresa", rezervacija.KorisnikId);
+            ViewData["SmjestajId"] = new SelectList(_context.Smjestaj, "SmjestajId", "SmjestajId", rezervacija.SmjestajId);
+            ViewData["UplataId"] = new SelectList(_context.Uplata, "Id", "Id", rezervacija.UplataId);
             return View(rezervacija);
         }
 
@@ -129,6 +141,9 @@ namespace OOAD2022.Controllers
             }
 
             var rezervacija = await _context.Rezervacija
+                .Include(r => r.Korisnik)
+                .Include(r => r.Smjestaj)
+                .Include(r => r.Uplata)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (rezervacija == null)
             {

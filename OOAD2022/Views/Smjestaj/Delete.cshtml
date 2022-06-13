@@ -35,6 +35,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.VrstaSmjestaja)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Slike)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Slike.Id)
+        </dd class>
     </dl>
     
     <form asp-action="Delete">

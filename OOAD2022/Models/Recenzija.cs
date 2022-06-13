@@ -10,12 +10,10 @@ namespace OOAD2022.Models
         public int OcjenaSmjestaja { get; set; }
         public string NazivSmjestaja { get; set; }
         public int OcjenaAplikacije { get; set; }
-        [ForeignKey("Soba")]
-        public int SobaId { get; set; }
-        [ForeignKey("Smjestaj")]
-        public int SmjestajId { get; set; }
-        [ForeignKey("Rezervacija")]
-        public int RezervacijaId { get; set; }
+   
+        [ForeignKey("Dojmovi")]
+        public int DojamId { get; set; }
+        public Dojmovi Dojmovi { get; set; }
 
         public Recenzija() { }
     }

@@ -1,8 +1,165 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Navbar (sit on top) -->
+<div width="1000">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>AAE</b>Invest</a>
+    <a href="#about" class="w3-bar-item w3-button">O nama</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="#projects" class="w3-bar-item w3-button">SLIKE</a>
+    </div>
+  </div>
 </div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="https://www.princehotels.com/wp-content/uploads/2019/04/aboutslider2-1.jpg" alt="Architecture" width="1500" height="768">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>AAE</b></span> <span class="w3-hide-small w3-text-light-grey">Invest</span></h1>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1200px">
+
+  <!-- Project Section -->
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Apartmani/Hoteli/Hosteli/Moteli</h3>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Soba</div>
+        <img src="https://www.kayak.com/rimg/himg/f6/ae/53/hotelsdotcom-1191238208-4f32dfe7_w-834324.jpg?width=1366&height=768&crop=true" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Soba</div>
+        <img src="https://pix10.agoda.net/hotelImages/143441/-1/fb05723602dd11c1d64b7f4d5d39289f.jpg?ca=23&ce=0&s=1024x768" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Hoteli s bazenom</div>
+        <img src="https://i.croatiaimages.com/articles/452/top-5-hotels-with-sea-view-1-l.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Hoteli na plaži</div>
+        <img src="https://www.tportal.hr/media/thumbnail/w1000/1154086.jpeg" alt="House" style="width:100%">
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Hotel Holiday</div>
+        <img src="https://gdb.rferl.org/5FB7E0F3-4492-4AC9-8C02-BAA85F8A12D6_w1200_r1.jpg" alt="House" style="width:99%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Hotel Hayat</div>
+        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/94/25/942569_v2.jpeg" alt="House" style="width:99%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Hotel Europe</div>
+        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/241307603.jpg?k=fff90b21687f4834587728925a8d62c516466178c4018fa6f4dd83f35e0e05bb&o=" alt="House" style="width:99%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Hotel Zagreb</div>
+        <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_627,q_auto,w_1200/itemimages/34/88/3488520_v1.jpeg" alt="House" style="width:99%">
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">O NAMA</h3>
+    <p style="font-family: 'Times New Roman', Times, serif"><b>Ono što našu aplikaciju čini posebno je taj brži pristup informacijama. Uz našu aplikaciju ćete moći vidjeti prikaz hotela na mapi koja će
+        biti u prvom planu. Sve što trebate uraditi je da se registrujete.
+        Aplikacija je osmišljena u okviru grupe od tri člana koju čine: Brulić Almina, Mešić Edin i Hajro Adnan.
+        Aplikaciju su razvijali: Brulić Almina i Hajro Adnan. 
+        NA DNU STRANICE MOŽETE VIDJETI KAKO ĆE VAM BITI PRIKAZANA STRANICA KADA SE REGISTRUJETE</b>
+    </p>
+  </div>
+
+  <div class="w3-row-padding w3-grayscale" >
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="https://kongres-magazine.eu/wp-content/uploads/2017/07/obrada.jpg?x36696" alt="John" style="width:100%" height="230">
+      <h3>Hotel Hills Sarajevo</h3>
+      <p class="w3-opacity">Hotel</p>
+      <p>Hotel Hills Sarajevo Congress & Thermal spa resort je deo termalne rivijere Ilidža i obuhvata veliki kompleks bazena u zatvorenom i na otvorenom...</p>
+      <p><button class="w3-button w3-light-grey w3-block">POSJETI</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="https://t-cf.bstatic.com/xdata/images/hotel/max1280x900/79915357.jpg?k=a91f2172cc1d17b5b4b80ef721eec947e661956a1262802530e84bada999947b&o=&hp=1" alt="Jane" style="width:100%" height="230">
+      <h3>Motel Vila Andrea</h3>
+      <p class="w3-opacity">Motel</p>
+      <p>Privatni smještaj Vila Andrea nalazi se u Kantonu Sarajevo, 7 km od Sarajeva, te ima dječje igralište i pogled na vrt. U sklopu objekta dostupan je restoran...</p>
+      <p><button class="w3-button w3-light-grey w3-block">POSJETI</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="https://t-cf.bstatic.com/xdata/images/hotel/max1280x900/67234985.jpg?k=d7331b1fc02e920a1702a57403e121c0f749c741e5a1c3242ccdc7a9a05d320a&o=&hp=1" alt="Mike" style="width:100%" height="230">
+      <h3>Hostel Mak Sarajevo</h3>
+      <p class="w3-opacity">Hostel</p>
+      <p>Objekat Hostel Mak nudi smeštaj sa vrtom i besplatnim WiFi internetom u svim prostorijama u Sarajevu, na manje od 1,2 km od Sebilj česme i na 1,2 km od Baščaršije... </p>
+      <p><button class="w3-button w3-light-grey w3-block">POSJETI</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="https://t-cf.bstatic.com/xdata/images/hotel/max1280x900/187097523.jpg?k=b6ca5c11c2a1bd5e1ce58f5768f82079ca184b27db25a68e137d8e2c768a6534&o=&hp=1" alt="Dan" style="width:100%" height="230">
+      <h3>Pansion Konak Sarajevo</h3>
+      <p class="w3-opacity">Pansion</p>
+      <p>Objekat Pansion Stari Konak nalazi se u Sarajevu, na 2 km od Sarajevskog ratnog tunela. U ponudi je smeštaj sa restoranom, besplatnim privatnim parkingom...</p>
+      <p><button class="w3-button w3-light-grey w3-block">POSJETI</button></p>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-32" id="contact">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Kontakt</h3>
+    <p>Kontaktirajte nas za više informacija: </p>
+    <form action="/action_page.php" target="_blank">
+      <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+      <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
+      <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
+      <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
+      <button class="w3-button w3-black w3-section" type="submit">
+        <i class="fa fa-paper-plane"></i> POŠALJI PORUKU
+      </button>
+    </form>
+  </div>
+  
+<!-- Image of location/map -->
+<div class="w3-container">
+  <img src="https://joomly.net/frontend/web/images/googlemap/map.png" class="w3-image" style="width:100%">
+</div>
+
+<!-- End page content -->
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://github.com/ooad-2021-2022/Grupa4-AAEInvest" title="AAEInvest" target="_blank" class="w3-hover-text-green">AAEInvest</a></p>
+</footer>
+
+</body>
+</html>

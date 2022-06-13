@@ -29,28 +29,23 @@
                 <span asp-validation-for="DatumOdlaska" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UplataId" class="control-label"></label>
-                <input asp-for="UplataId" class="form-control" />
-                <span asp-validation-for="UplataId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Cijena" class="control-label"></label>
                 <input asp-for="Cijena" class="form-control" />
                 <span asp-validation-for="Cijena" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Recenzija" class="control-label"></label>
-                <input asp-for="Recenzija" class="form-control" />
-                <span asp-validation-for="Recenzija" class="text-danger"></span>
+                <label asp-for="UplataId" class="control-label"></label>
+                <select asp-for="UplataId" class="form-control" asp-items="ViewBag.UplataId"></select>
+                <span asp-validation-for="UplataId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="KorisnikId" class="control-label"></label>
-                <input asp-for="KorisnikId" class="form-control" />
+                <select asp-for="KorisnikId" class="form-control" asp-items="ViewBag.KorisnikId"></select>
                 <span asp-validation-for="KorisnikId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SmjestajId" class="control-label"></label>
-                <input asp-for="SmjestajId" class="form-control" />
+                <select asp-for="SmjestajId" class="form-control" asp-items="ViewBag.SmjestajId"></select>
                 <span asp-validation-for="SmjestajId" class="text-danger"></span>
             </div>
             <div class="form-group">

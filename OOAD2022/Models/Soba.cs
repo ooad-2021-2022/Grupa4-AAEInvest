@@ -11,11 +11,11 @@ namespace OOAD2022.Models
         public int BrojKreveta { get; set; }
         public string NazivSmjestaja { get; set; }
         public int Cijena { get; set; }
-        [ForeignKey("Rezervacija")]
-        public int RezervacijaId { get; set; }
+
         [ForeignKey("Smjestaj")]
         public int SmjestajId { get; set; }
-
+        public Smjestaj Smjestaj { get; set; }
+ 
         public Soba() { }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OOAD2022.Data;
 
-namespace OOAD2022.Data.Migrations
+namespace OOAD2022.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -229,9 +229,6 @@ namespace OOAD2022.Data.Migrations
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RecenzijaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Dojmovi");
@@ -245,9 +242,12 @@ namespace OOAD2022.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Adresa")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Godiste")
@@ -257,6 +257,7 @@ namespace OOAD2022.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Lozinka")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("KorisnikId");
@@ -271,6 +272,9 @@ namespace OOAD2022.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("DojamId")
+                        .HasColumnType("int");
+
                     b.Property<string>("NazivSmjestaja")
                         .HasColumnType("nvarchar(max)");
 
@@ -280,16 +284,9 @@ namespace OOAD2022.Data.Migrations
                     b.Property<int>("OcjenaSmjestaja")
                         .HasColumnType("int");
 
-                    b.Property<int>("RezervacijaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SmjestajId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SobaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("DojamId");
 
                     b.ToTable("Recenzija");
                 });
@@ -313,9 +310,6 @@ namespace OOAD2022.Data.Migrations
                     b.Property<int>("KorisnikId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Recenzija")
-                        .HasColumnType("int");
-
                     b.Property<int>("Sifra")
                         .HasColumnType("int");
 
@@ -327,6 +321,12 @@ namespace OOAD2022.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("KorisnikId");
+
+                    b.HasIndex("SmjestajId");
+
+                    b.HasIndex("UplataId");
+
                     b.ToTable("Rezervacija");
                 });
 
@@ -336,15 +336,6 @@ namespace OOAD2022.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("RezervacijaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SmjestajId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SobaId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
@@ -370,10 +361,15 @@ namespace OOAD2022.Data.Migrations
                     b.Property<string>("NazivSmjestaja")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SlikaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("VrstaSmjestaja")
                         .HasColumnType("int");
 
                     b.HasKey("SmjestajId");
+
+                    b.HasIndex("SlikaId");
 
                     b.ToTable("Smjestaj");
                 });
@@ -397,13 +393,12 @@ namespace OOAD2022.Data.Migrations
                     b.Property<string>("NazivSmjestaja")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RezervacijaId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SmjestajId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SmjestajId");
 
                     b.ToTable("Soba");
                 });
@@ -478,6 +473,66 @@ namespace OOAD2022.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("OOAD2022.Models.Recenzija", b =>
+                {
+                    b.HasOne("OOAD2022.Models.Dojmovi", "Dojmovi")
+                        .WithMany()
+                        .HasForeignKey("DojamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dojmovi");
+                });
+
+            modelBuilder.Entity("OOAD2022.Models.Rezervacija", b =>
+                {
+                    b.HasOne("OOAD2022.Models.Korisnik", "Korisnik")
+                        .WithMany()
+                        .HasForeignKey("KorisnikId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OOAD2022.Models.Smjestaj", "Smjestaj")
+                        .WithMany()
+                        .HasForeignKey("SmjestajId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OOAD2022.Models.Uplata", "Uplata")
+                        .WithMany()
+                        .HasForeignKey("UplataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Korisnik");
+
+                    b.Navigation("Smjestaj");
+
+                    b.Navigation("Uplata");
+                });
+
+            modelBuilder.Entity("OOAD2022.Models.Smjestaj", b =>
+                {
+                    b.HasOne("OOAD2022.Models.Slike", "Slike")
+                        .WithMany()
+                        .HasForeignKey("SlikaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Slike");
+                });
+
+            modelBuilder.Entity("OOAD2022.Models.Soba", b =>
+                {
+                    b.HasOne("OOAD2022.Models.Smjestaj", "Smjestaj")
+                        .WithMany()
+                        .HasForeignKey("SmjestajId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Smjestaj");
                 });
 #pragma warning restore 612, 618
         }
