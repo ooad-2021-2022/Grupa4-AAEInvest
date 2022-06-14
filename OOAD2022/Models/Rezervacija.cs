@@ -9,7 +9,9 @@ namespace OOAD2022.Models
         [Key]
         public int Id { get; set; }
         public int Sifra { get; set; }
+        [Display(Name = "Datum dolaska")]
         public DateTime DatumDolaska { get; set; }
+        [Display(Name = "Datum odlaska")]
         public DateTime DatumOdlaska { get; set; }
         public int Cijena { get; set; }
 

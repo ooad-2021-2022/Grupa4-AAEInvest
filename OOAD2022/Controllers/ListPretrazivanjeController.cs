@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ namespace OOAD2022.Controllers
         }
 
         // GET: ListPretrazivanje/Details/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +48,7 @@ namespace OOAD2022.Controllers
         }
 
         // GET: ListPretrazivanje/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id");
@@ -70,6 +73,7 @@ namespace OOAD2022.Controllers
         }
 
         // GET: ListPretrazivanje/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +95,7 @@ namespace OOAD2022.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("SmjestajId,NazivSmjestaja,AdresaSmjestaja,Kontakt,VrstaSmjestaja,SlikaId")] Smjestaj smjestaj)
         {
             if (id != smjestaj.SmjestajId)
@@ -123,6 +128,7 @@ namespace OOAD2022.Controllers
         }
 
         // GET: ListPretrazivanje/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,6 +150,7 @@ namespace OOAD2022.Controllers
         // POST: ListPretrazivanje/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var smjestaj = await _context.Smjestaj.FindAsync(id);

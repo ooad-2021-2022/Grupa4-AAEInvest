@@ -11,8 +11,10 @@ using OOAD2022.Models;
 
 namespace OOAD2022.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class SmjestajController : Controller
     {
+
         private readonly ApplicationDbContext _context;
 
         public SmjestajController(ApplicationDbContext context)
