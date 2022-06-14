@@ -11,109 +11,140 @@
 <html>
 <head>
 <title>RezervisiMe</title>
-<meta charset="utf-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-body, html {
-  height: 100%;
-  line-height: 1.8;
-}
-
-/* Full height image header */
-.bgimg-1 {
-  background-position: center;
-  background-size: cover;
-  background-image: url("/w3images/mac.jpg");
-  min-height: 100%;
-}
-
-.w3-bar .w3-button {
-  padding: 16px;
-}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+.w3-bar-block .w3-bar-item {padding:20px}
 </style>
 </head>
- <header>
-       <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RezervisiMe</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MapPretrazivanje" asp-action="Index">MAPA</a>
-                        </li>
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Korisnik" asp-action="Index">Korisnici</a>
-                            </li>
-                        }
-                         @if (User.IsInRole("Administrator"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Rezervacija" asp-action="Index">Rezervacije</a>
-                            </li>
-                        }
-                         @if (User.IsInRole("Administrator"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Smjestaj" asp-action="Index">Smjestaji</a>
-                            </li>
-                        }
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
 <body>
-<div class="w3-container w3-padding-25" id="about">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16" style="text-align:center">REZERVIŠI</h3>
+
+<!-- Sidebar (hidden by default) -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()"
+  class="w3-bar-item w3-button">ZATVORI PROZOR</a>
+  <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button">REZERVACIJE</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">MI</a>
+</nav>
+
+<!-- Top menu -->
+<div class="w3-top">
+  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+    <div class="w3-right w3-padding-16">RezervisiMe</div>
+    <div class="w3-center w3-padding-16">Rezervacija</div>
+  </div>
+</div>
+  
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+    <div class="w3-quarter">
+      <img src="https://pix10.agoda.net/hotelImages/22930930/0/2ccfab45d20f8d8e3b0c712a8ba5c20d.jpg?ca=23&ce=0&s=1024x768" alt="Sandwich" style="width:100%; height:210px">
+      <h3>Hotel Hills Sarajevo</h3>
+      <p>Rezervišite svoje mjesto u hotelu iznad</p>
+       <p><button class="w3-button w3-light-grey w3-block"><a asp-controller="Rezervacija" asp-action="Create">REZERVISITE</a></button></p>
+    </div>
+    <div class="w3-quarter">
+      <img src="https://media-cdn.tripadvisor.com/media/photo-s/0b/14/19/21/hotel-hollywood-sarajevo.jpg" alt="Steak" style="width:100%; height:210px">
+      <h3>Hotel Hollywood Sarajevo</h3>
+      <p>Rezervišite svoje mjesto u hotelu iznad</p>
+      <p><button class="w3-button w3-light-grey w3-block"><a asp-controller="Rezervacija" asp-action="Create">REZERVISITE</a></button></p>    
+  </div>
+    <div class="w3-quarter">
+      <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/241307603.jpg?k=93aba2b8c4909e90cb6e5e55ff1676dd6a944139423ba99e0ad32cb589606f28&o=&hp=1" alt="Cherries" style="width:100%; height:210px">
+      <h3>Hotel Europe Sarajevo</h3>
+      <p>Rezervišite svoje mjesto u hotelu iznad</p>
+      <a asp-controller="Home" asp-action="Index"></a>
+      <p ><button class="w3-button w3-light-grey w3-block"> <a asp-controller="Rezervacija" asp-action="Create">REZERVISITE</a></button></p>
+    </div>
+    <div class="w3-quarter">
+      <img src="https://pix10.agoda.net/hotelImages/22930852/0/6e986f0dff7a715b0a0196dfbd36a963.jpg?ca=23&ce=0&s=1024x768" alt="Pasta and Wine" style="width:100%; height:210px">
+      <h3>Hotel Holiday Sarajevo</h3>
+      <p>Rezervišite svoje mjesto u hotelu iznad</p>
+      <p><button class="w3-button w3-light-grey w3-block"><a asp-controller="Rezervacija" asp-action="Create">REZERVISITE</a></button></p>
+    </div>
+  </div>
+  
+
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+    </div>
   </div>
 
-  <div class="w3-row-padding w3-grayscale" >
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <a href="https://hotelhills.ba/"><img src="https://kongres-magazine.eu/wp-content/uploads/2017/07/obrada.jpg?x36696" alt="John" style="width:100%" height="230"></a>
-      <h3>Hotel Hills Sarajevo</h3>
-      <p class="w3-opacity">Hotel</p>
-      <p>Hotel Hills Sarajevo Congress & Thermal spa resort je deo termalne rivijere Ilidža i obuhvata veliki kompleks bazena u zatvorenom i na otvorenom...</p>
-      <p><a asp-controller="Rezervacija" asp-action="Create"><button class="w3-button w3-light-grey w3-block">REZERVIŠI</button></a></></p>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-       <a href="https://www.vilaandrea.com/"><img src="https://t-cf.bstatic.com/xdata/images/hotel/max1280x900/79915357.jpg?k=a91f2172cc1d17b5b4b80ef721eec947e661956a1262802530e84bada999947b&o=&hp=1" alt="Jane" style="width:100%" height="230"></a>
-      <h3>Motel Vila Andrea</h3>
-      <p class="w3-opacity">Motel</p>
-      <p>Privatni smještaj Vila Andrea nalazi se u Kantonu Sarajevo, 7 km od Sarajeva, te ima dječje igralište i pogled na vrt. U sklopu objekta dostupan je restoran...</p>
-      <p><a asp-controller="Rezervacija" asp-action="Create"><button class="w3-button w3-light-grey w3-block">REZERVIŠI</button></a></p>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <a href="https://hostel-mak.sarajevohotels.org/en/"> <img src="https://t-cf.bstatic.com/xdata/images/hotel/max1280x900/67234985.jpg?k=d7331b1fc02e920a1702a57403e121c0f749c741e5a1c3242ccdc7a9a05d320a&o=&hp=1" alt="Mike" style="width:100%" height="230"></a>
-      <h3>Hostel Mak Sarajevo</h3>
-      <p class="w3-opacity">Hostel</p>
-      <p>Objekat Hostel Mak nudi smeštaj sa vrtom i besplatnim WiFi internetom u svim prostorijama u Sarajevu, na manje od 1,2 km od Sebilj česme... </p>
-      <p><a asp-controller="Rezervacija" asp-action="Create"><button class="w3-button w3-light-grey w3-block">REZERVIŠI</button></a></></p>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-       <img src="https://t-cf.bstatic.com/xdata/images/hotel/max1280x900/187097523.jpg?k=b6ca5c11c2a1bd5e1ce58f5768f82079ca184b27db25a68e137d8e2c768a6534&o=&hp=1" alt="Dan" style="width:100%" height="230">
-      <h3>Pansion Konak Sarajevo</h3>
-      <p class="w3-opacity">Pansion</p>
-      <p>Objekat Pansion Stari Konak nalazi se u Sarajevu, na 2 km od Sarajevskog ratnog tunela. U ponudi je smještaj sa restoranom....</p>
-      <p><a asp-controller="Rezervacija" asp-action="Create"><button class="w3-button w3-light-grey w3-block">REZERVIŠI</button></a></p>
+  <div><button class="w3-button w3-light-grey w3-block"> <a asp-controller="MapPretrazivanje" asp-action="Index">PRIKAŽI MAPU</a></button></div>
+  
+  <hr id="about">
+
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32 w3-center">  
+    <h3>Vaš AAEInvest</h3><br>
+    <img src="https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg" alt="Me" class="w3-image" style="display:block;margin:auto" width="800" height="533">
+    <div class="w3-padding-32">
+      <h4><b>S NAMA JE BRŽE!</b></h4>
     </div>
   </div>
+  <hr>
+  
+  <!-- Footer -->
+  <footer class="w3-row-padding w3-padding-32">
+    <div class="w3-third">
+      <h3>POSJETITE NAŠ RAD</h3>
+      <p>Naša stranica s projektima i svim dosadašnjim zalaganjima na ovom projektu</p>
+      <p>Powered by <a href="https://github.com/ooad-2021-2022/Grupa4-AAEInvest" target="_blank">AAEInvest</a></p>
+    </div>
+  
+    <div class="w3-third">
+      <h3>PREDLOŽENO?</h3>
+      <ul class="w3-ul w3-hoverable">
+        <li class="w3-padding-16">
+          <img src="https://www.sobe-smestaj.com/bih/galerija/28736103-2015-01-19-14-31-50.jpg" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">MOTEL PIRAMIDA SUNCA</span><br>
+          <span>Visoko</span>
+        </li>
+        <li class="w3-padding-16">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwLNtA_nxlaWiArtzN0ewP9-QIFWlhJTTK-ksDD-3DdVLFI716fpsDKS5duuZw6RdHf-c&usqp=CAU" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">HOSTEL</span><br>
+          <span>Franc Ferdinand</span>
+        </li> 
+      </ul>
+    </div>
+
+    <div class="w3-third w3-serif">
+      <h3>POPULARNA MJESTA</h3>
+      <p>
+        <span class="w3-tag w3-black w3-margin-bottom">HOTEL HILLS</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">HOTEL HOLLYWOOD</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">HOTEL EUROPE</span>
+        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">MOTEL PIRADMIDA SUNCA</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">HOTEL HOLIDAY</span> 
+
+      </p>
+    </div>
+  </footer>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
 
 </body>
 </html>
