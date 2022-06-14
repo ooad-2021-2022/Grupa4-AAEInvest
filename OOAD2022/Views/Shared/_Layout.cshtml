@@ -27,13 +27,19 @@
                         @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Korisnik" asp-action="Index">Users</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Korisnik" asp-action="Index">Korisnici</a>
                             </li>
                         }
                          @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Rezervacija" asp-action="Index">Rezervacije</a>
+                            </li>
+                        }
+                         @if (User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Smjestaj" asp-action="Index">Smjestaji</a>
                             </li>
                         }
                     </ul>

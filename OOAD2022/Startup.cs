@@ -32,14 +32,12 @@ namespace OOAD2022
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options =>
-                options.SignIn.RequireConfirmedAccount = true)
-                 .AddRoles<IdentityRole>()
-                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
-        
-
-    }
+                    services.AddDefaultIdentity<IdentityUser>(options =>
+           options.SignIn.RequireConfirmedAccount = true)
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+                    services.AddControllersWithViews();
+        }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,26 +10,23 @@ using OOAD2022.Models;
 
 namespace OOAD2022.Controllers
 {
-   //korisnik ce moci sam svom profilu da pristupi, a administrator svima ???
-  [Authorize(Roles ="Administrator")]
- //[Authorize(Roles ="Korisnik")]
-    public class KorisnikController : Controller
+    public class ListPretrazivanjeController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-
-        public KorisnikController(ApplicationDbContext context)
+        public ListPretrazivanjeController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Korisnik
+        // GET: ListPretrazivanje
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Korisnik.ToListAsync());
+            var applicationDbContext = _context.Smjestaj.Include(s => s.Slike);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Korisnik/Details/5
+        // GET: ListPretrazivanje/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,39 +34,42 @@ namespace OOAD2022.Controllers
                 return NotFound();
             }
 
-            var korisnik = await _context.Korisnik
-                .FirstOrDefaultAsync(m => m.KorisnikId == id);
-            if (korisnik == null)
+            var smjestaj = await _context.Smjestaj
+                .Include(s => s.Slike)
+                .FirstOrDefaultAsync(m => m.SmjestajId == id);
+            if (smjestaj == null)
             {
                 return NotFound();
             }
 
-            return View(korisnik);
+            return View(smjestaj);
         }
 
-        // GET: Korisnik/Create
+        // GET: ListPretrazivanje/Create
         public IActionResult Create()
         {
+            ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id");
             return View();
         }
 
-        // POST: Korisnik/Create
+        // POST: ListPretrazivanje/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KorisnikId,KorisnikImeIPrezime,Email,Lozinka,Adresa,Godiste")] Korisnik korisnik)
+        public async Task<IActionResult> Create([Bind("SmjestajId,NazivSmjestaja,AdresaSmjestaja,Kontakt,VrstaSmjestaja,SlikaId")] Smjestaj smjestaj)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(korisnik);
+                _context.Add(smjestaj);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(korisnik);
+            ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id", smjestaj.SlikaId);
+            return View(smjestaj);
         }
 
-        // GET: Korisnik/Edit/5
+        // GET: ListPretrazivanje/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,22 +77,23 @@ namespace OOAD2022.Controllers
                 return NotFound();
             }
 
-            var korisnik = await _context.Korisnik.FindAsync(id);
-            if (korisnik == null)
+            var smjestaj = await _context.Smjestaj.FindAsync(id);
+            if (smjestaj == null)
             {
                 return NotFound();
             }
-            return View(korisnik);
+            ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id", smjestaj.SlikaId);
+            return View(smjestaj);
         }
 
-        // POST: Korisnik/Edit/5
+        // POST: ListPretrazivanje/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("KorisnikId,KorisnikImeIPrezime,Email,Lozinka,Adresa,Godiste")] Korisnik korisnik)
+        public async Task<IActionResult> Edit(int id, [Bind("SmjestajId,NazivSmjestaja,AdresaSmjestaja,Kontakt,VrstaSmjestaja,SlikaId")] Smjestaj smjestaj)
         {
-            if (id != korisnik.KorisnikId)
+            if (id != smjestaj.SmjestajId)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace OOAD2022.Controllers
             {
                 try
                 {
-                    _context.Update(korisnik);
+                    _context.Update(smjestaj);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!KorisnikExists(korisnik.KorisnikId))
+                    if (!SmjestajExists(smjestaj.SmjestajId))
                     {
                         return NotFound();
                     }
@@ -118,10 +118,11 @@ namespace OOAD2022.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(korisnik);
+            ViewData["SlikaId"] = new SelectList(_context.Slike, "Id", "Id", smjestaj.SlikaId);
+            return View(smjestaj);
         }
 
-        // GET: Korisnik/Delete/5
+        // GET: ListPretrazivanje/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,30 +130,31 @@ namespace OOAD2022.Controllers
                 return NotFound();
             }
 
-            var korisnik = await _context.Korisnik
-                .FirstOrDefaultAsync(m => m.KorisnikId == id);
-            if (korisnik == null)
+            var smjestaj = await _context.Smjestaj
+                .Include(s => s.Slike)
+                .FirstOrDefaultAsync(m => m.SmjestajId == id);
+            if (smjestaj == null)
             {
                 return NotFound();
             }
 
-            return View(korisnik);
+            return View(smjestaj);
         }
 
-        // POST: Korisnik/Delete/5
+        // POST: ListPretrazivanje/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var korisnik = await _context.Korisnik.FindAsync(id);
-            _context.Korisnik.Remove(korisnik);
+            var smjestaj = await _context.Smjestaj.FindAsync(id);
+            _context.Smjestaj.Remove(smjestaj);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool KorisnikExists(int id)
+        private bool SmjestajExists(int id)
         {
-            return _context.Korisnik.Any(e => e.KorisnikId == id);
+            return _context.Smjestaj.Any(e => e.SmjestajId == id);
         }
     }
 }
