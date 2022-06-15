@@ -1,7 +1,7 @@
 <h1 align="center">Grupa4-AAEInvest</h1>
 <h1 align="center">RezervisiMe.ba</h1>
-<a href="http://alminabrulic-001-site1.btempurl.com/">Posjetite nasu web aplikaciju</a>
-
+<a href="http://alminabrulic-001-site1.btempurl.com/">Posjetite našu aplikaciju!</a>
+<br>
 ![Logo](https://i.postimg.cc/HLrS0Pr1/logo.jpg) 
 
 
