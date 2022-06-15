@@ -30,6 +30,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Korisnik)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Korisnik)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Smjestaj)
             </th>
@@ -55,7 +58,10 @@
                 @Html.DisplayFor(modelItem => item.Uplata.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Korisnik.Adresa)
+                @Html.DisplayFor(modelItem => item.Korisnik.KorisnikId)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Korisnik.KorisnikImeIPrezime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Smjestaj.SmjestajId)

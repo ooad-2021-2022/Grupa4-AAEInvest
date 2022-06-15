@@ -51,7 +51,7 @@ namespace OOAD2022.Controllers
         // GET: Rezervacija/Create
         public IActionResult Create()
         {
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "Adresa");
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "KorisnikId");
             ViewData["SmjestajId"] = new SelectList(_context.Smjestaj, "SmjestajId", "SmjestajId");
             ViewData["UplataId"] = new SelectList(_context.Uplata, "Id", "Id");
             return View();
@@ -90,7 +90,7 @@ namespace OOAD2022.Controllers
             {
                 return NotFound();
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "Adresa", rezervacija.KorisnikId);
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "KorisnikId", rezervacija.KorisnikId);
             ViewData["SmjestajId"] = new SelectList(_context.Smjestaj, "SmjestajId", "SmjestajId", rezervacija.SmjestajId);
             ViewData["UplataId"] = new SelectList(_context.Uplata, "Id", "Id", rezervacija.UplataId);
             return View(rezervacija);
