@@ -11,6 +11,7 @@ using OOAD2022.Models;
 
 namespace OOAD2022.Controllers
 {
+    [Authorize]
     public class RezervacijaController : Controller
     {
         private readonly ApplicationDbContext _context;

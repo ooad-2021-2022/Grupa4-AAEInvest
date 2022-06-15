@@ -4,6 +4,8 @@
     ViewData["Title"] = "Details";
 }
 
+ @if (User.IsInRole("Administrator"))
+ {
 <h1>Details</h1>
 
 <div>
@@ -46,3 +48,4 @@
     <a asp-action="Edit" asp-route-id="@Model.SmjestajId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+}
