@@ -9,7 +9,9 @@ namespace OOAD2022.Models
         [Display (Name ="ID smještaja")]
         public int SmjestajId { get; set; }
         [Display(Name = "Naziv smještaja")]
+        [Required]
         public string NazivSmjestaja { get; set; }
+        [Required]
         [Display(Name = "Adresa smještaja")]
         public string AdresaSmjestaja { get; set; }
         public string Kontakt { get; set; }

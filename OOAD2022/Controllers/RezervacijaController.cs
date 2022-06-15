@@ -71,7 +71,7 @@ namespace OOAD2022.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "Adresa", rezervacija.KorisnikId);
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "KorisnikId", "KorisnikId", rezervacija.KorisnikId);
             ViewData["SmjestajId"] = new SelectList(_context.Smjestaj, "SmjestajId", "SmjestajId", rezervacija.SmjestajId);
             ViewData["UplataId"] = new SelectList(_context.Uplata, "Id", "Id", rezervacija.UplataId);
             return View(rezervacija);
