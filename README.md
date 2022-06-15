@@ -6,7 +6,7 @@
 
 **Tema** - Aplikacija za rezervaciju smještaja
 <br>
-<a href="http://alminabrulic-001-site1.btempurl.com/">Posjetite našu stranicu</a>
+<a href="http://alminabrulic-001-site1.btempurl.com/">RezervisiMe.ba</a>
 # RezervisiMe.ba
 
 ------
