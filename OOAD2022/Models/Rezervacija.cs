@@ -4,18 +4,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OOAD2022.Models
 {
-    public class ValidateDate : ValidationAttribute
-    {
-        protected override ValidationResult IsValid
-        (object date, ValidationContext validationContext)
-        {
-            return ((DateTime)date >= DateTime.Now)
-            ? ValidationResult.Success
-            : new ValidationResult("Validan je datum od datuma danasnjeg dana");
-        }
-    }
+
+    
+
     public class Rezervacija
     {
+        private class ValidateDate : ValidationAttribute
+        {
+            protected override ValidationResult IsValid
+            (object date, ValidationContext validationContext)
+            {
+                return ((DateTime)date >= DateTime.Now)
+                ? ValidationResult.Success
+                : new ValidationResult("Validan je datum od datuma danasnjeg dana");
+            }
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]

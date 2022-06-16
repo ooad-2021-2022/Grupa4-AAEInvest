@@ -4,18 +4,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OOAD2022.Models
 {
-    public class ValidateDate2 : ValidationAttribute
-    {
-        protected override ValidationResult IsValid
-        (object date, ValidationContext validationContext)
-        {
-            return ((DateTime)date < DateTime.Now)
-            ? ValidationResult.Success
-            : new ValidationResult("Validan je datum prije danasnjeg datuma");
-        }
-    }
+    
     public class Korisnik
     {
+        private class ValidateDate2 : ValidationAttribute
+        {
+            protected override ValidationResult IsValid
+            (object date, ValidationContext validationContext)
+            {
+                return ((DateTime)date < DateTime.Now)
+                ? ValidationResult.Success
+                : new ValidationResult("Validan je datum prije danasnjeg datuma");
+            }
+        }
+
         [Key]
         public int KorisnikId { get; set; }
         [DisplayName("Ime i prezime")]

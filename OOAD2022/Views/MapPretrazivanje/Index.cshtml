@@ -48,7 +48,7 @@ body, html {
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
         <a class="w3-bar-item w3-button" asp-controller="ListPretrazivanje" asp-action="Index"><i class="fa fa-envelope"></i> PRIKAZI LISTU</a>
-      <a href="https://localhost:44375/Identity/Account/Manage" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFIL</a>
+      <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFIL</a>
       <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PLAĆANJE</a>
       <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> KONTAKT</a>
     </div>
@@ -237,7 +237,7 @@ body, html {
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <p>Powered by <a href="https://github.com/ooad-2021-2022/Grupa4-AAEInvest" title="W3.CSS" target="_blank" class="w3-hover-text-green">AAEInvest</a></p>
 </footer>
  
 <script>
